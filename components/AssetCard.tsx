@@ -1,12 +1,133 @@
-// import type { NextComponentType } from 'next'
-import {FunctionComponent} from 'react'
+import {
+  FunctionComponent,
+  useContext
+} from 'react'
 import { Box, Image, Button } from "@chakra-ui/react"
 import type {IAssetObjectInterface} from '../hooks/useOpenseaApi'
 import { Link } from "@chakra-ui/react"
 import { LinkIcon } from '@chakra-ui/icons'
+import { LineContext } from '../context/LineContext'
 
 const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
-  const handleShare = () => {}
+  const {
+    connectLine,
+    liffConnector
+  } = useContext(LineContext)
+  const handleShare = async () => {
+    if (!liffConnector || liffConnector.isLoggedIn()) {
+      await connectLine()
+    }
+    console.log(liffConnector)
+    await liffConnector?.sendMessages([
+      {
+        "type": "flex",
+        "altText": "this is a flex message",
+        "contents": {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": props.image_url,
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "2:3",
+                "gravity": "top"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": props.name,
+                        "size": "xl",
+                        "color": "#ffffff",
+                        "weight": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": props.asset_contract.description,
+                        "color": "#ffffffcc",
+                        "decoration": "line-through",
+                        "gravity": "bottom",
+                        "flex": 0,
+                        "size": "sm"
+                      }
+                    ],
+                    "spacing": "lg"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "filler"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "filler"
+                          },
+                          {
+                            "type": "text",
+                            "text": "Go to NFT Market",
+                            "color": "#ffffff",
+                            "flex": 0,
+                            "offsetTop": "-2px"
+                          },
+                          {
+                            "type": "filler"
+                          }
+                        ],
+                        "spacing": "sm",
+                        "action": {
+                          "type": "uri",
+                          "label": "action",
+                          "uri": props.external_link
+                        }
+                      },
+                      {
+                        "type": "filler"
+                      }
+                    ],
+                    "borderWidth": "1px",
+                    "cornerRadius": "4px",
+                    "spacing": "sm",
+                    "borderColor": "#ffffff",
+                    "margin": "xxl",
+                    "height": "40px"
+                  }
+                ],
+                "position": "absolute",
+                "offsetBottom": "0px",
+                "offsetStart": "0px",
+                "offsetEnd": "0px",
+                "backgroundColor": "#03303Acc",
+                "paddingAll": "20px",
+                "paddingTop": "18px"
+              }
+            ],
+            "paddingAll": "0px"
+          }
+        }
+      }
+    ])
+  }
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Link href={props.permalink} isExternal>

@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^1.6.7",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "@line/liff": "^2.14.0",
     "@walletconnect/client": "^1.6.5",
     "@walletconnect/qrcode-modal": "^1.6.5",
     "@walletconnect/web3-provider": "^1.6.5",
