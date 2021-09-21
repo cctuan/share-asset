@@ -37,15 +37,16 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
               },
               {
                 "type": "box",
-                "layout": "vertical",
+                "layout": "horizontal",
                 "contents": [
                   {
                     "type": "box",
-                    "layout": "horizontal",
+                    "layout": "baseline",
                     "contents": [
                       {
                         "type": "text",
                         "text": "LINE",
+                        "flex": 0,
                         "margin": "xs",
                         "size": "sm",
                         "color": "#ffffff",
