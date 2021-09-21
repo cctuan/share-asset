@@ -17,10 +17,14 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
     if (!liffConnector.current || !liffConnector.current.isLoggedIn()) {
       await connectLine()
     }
-    liffConnector.current && await liffConnector.current.shareTargetPicker([
+    if (!liffConnector.current) {
+      return
+    }
+    const userProfile = await liffConnector.current.getProfile()
+    await liffConnector.current.shareTargetPicker([
       {
         "type": "flex",
-        "altText": "this is a flex message",
+        "altText": `${userProfile.displayName} share his NFT called "${props.name}" with you.`,
         "contents": {
           "type": "bubble",
           "body": {
