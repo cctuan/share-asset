@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Layout from '../layouts/DefaultLayout'
-import {WalletContext} from '../context/WalletContext'
+import { WalletContext } from '../context/WalletContext'
 import Router from 'next/router'
 import { Button } from "@chakra-ui/react"
 import {
@@ -9,12 +9,18 @@ import {
   useEffect
 } from 'react'
 const Home: NextPage = () => {
-  const { isWalletConnected, connectWallet, connector } = useContext(WalletContext)
+  const {
+    isWalletConnected,
+    connectWallet,
+    connector,
+    accounts
+  } = useContext(WalletContext)
   useEffect(() => {
     if (isWalletConnected) {
+      // Router.push(`/address/${accounts[0]}`)
       Router.push('/address/0x495f947276749ce646f68ac8c248420045cb7b5e')
     }
-  }, [isWalletConnected])
+  }, [isWalletConnected, accounts[0]])
 
   const handleConnectWallet = () => {
     if (!isWalletConnected && connector) {
