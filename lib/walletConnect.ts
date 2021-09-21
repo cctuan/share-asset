@@ -1,12 +1,9 @@
-// IT doesn't work 
 
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 
-export type IConnector = WalletConnect
-
 export const initWallet = () => {
-  return new Promise<IConnector>((resolve, reject) => {
+  return new Promise<WalletConnect>((resolve, reject) => {
     // Create a connector
     const connector = new WalletConnect({
       bridge: "https://bridge.walletconnect.org", // Required

@@ -6,16 +6,18 @@ export const useWallet = () => {
   const [connector, setConnector] = useState<WalletConnect|null>(null)
   const [accounts, setAccounts] = useState<string[]>([])
   const [chainId, setChainId] = useState<number>(0)
-  useEffect(() => {
+  const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false)
+
+  // walletConnector.createSession()
+  const connectWallet = () => {
     const walletConnector = new WalletConnect({
       bridge: "https://bridge.walletconnect.org", // Required
       qrcodeModal: QRCodeModal,
     });
-    if (!walletConnector.connected) {
-      // create new session
-      walletConnector.createSession();
-    } else {
-      setConnector(walletConnector)
+    setConnector(walletConnector)
+
+    if (walletConnector.connected) {
+      setIsWalletConnected(true)
       setAccounts(walletConnector.accounts)
       setChainId(walletConnector.chainId)
     }
@@ -25,6 +27,7 @@ export const useWallet = () => {
         console.error(error)
         throw error;
       }
+      setIsWalletConnected(true)
       // wallet.setConnector(walletConnector)
       const { accounts, chainId } = payload.params[0];
       setAccounts(accounts)
@@ -51,19 +54,22 @@ export const useWallet = () => {
       if (error) {
         throw error;
       }
-      setConnector(null)
-
       // Get updated accounts and chainId
       const { accounts, chainId } = payload.params[0];
       setAccounts(accounts)
       setChainId(chainId)
-
+      setIsWalletConnected(false)
       walletConnector.createSession();
     });
+  }
+  useEffect(() => {
+    connectWallet()
   }, [])
   return {
     connector,
     accounts,
-    chainId
+    chainId,
+    isWalletConnected,
+    connectWallet
   }
 }
