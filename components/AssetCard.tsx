@@ -14,7 +14,7 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
     liffConnector
   } = useContext(LineContext)
   const handleShare = async () => {
-    if (!liffConnector || liffConnector.isLoggedIn()) {
+    if (!liffConnector || !liffConnector.isLoggedIn()) {
       await connectLine()
     }
     console.log(liffConnector)
