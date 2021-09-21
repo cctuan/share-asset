@@ -49,7 +49,8 @@ export interface IAssetObjectInterface {
     name: string,
     external_link: string,
     asset_contract: IAssetContract,
-    owner: IOpenseaOwner
+    owner: IOpenseaOwner,
+    permalink: string
 }
 
 export interface IOpenseaReponse {

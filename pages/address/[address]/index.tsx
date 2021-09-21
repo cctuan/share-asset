@@ -5,6 +5,8 @@ import {useOpenseaApi} from '../../../hooks/useOpenseaApi'
 import {
   useContext
 } from 'react'
+import AssetCard from '../../../components/AssetCard'
+import { Container } from "@chakra-ui/react"
 
 const Assets: NextPage = () => {
   const router = useRouter()
@@ -23,9 +25,13 @@ const Assets: NextPage = () => {
   })
 
   return (
-    <div>
-      {JSON.stringify(response)}
-    </div>
+    <Container centerContent>
+      {response && response.assets.map(asset => {
+        return (
+          <AssetCard {...asset} key={asset.token_id}/>
+        )
+      })}
+    </Container>
   )
 }
 
