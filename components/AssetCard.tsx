@@ -37,6 +37,44 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
               },
               {
                 "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "LINE",
+                        "margin": "xs",
+                        "size": "sm",
+                        "color": "#ffffff",
+                        "weight": "bold",
+                        "style": "normal",
+                        "decoration": "none"
+                      }
+                    ],
+                    "backgroundColor": "#06C755",
+                    "cornerRadius": "5px",
+                    "paddingAll": "6px",
+                    "paddingTop": "2px",
+                    "position": "relative"
+                  }
+                ],
+                "cornerRadius": "5px",
+                "spacing": "md",
+                "margin": "none",
+                "alignItems": "center",
+                "position": "absolute",
+                "borderWidth": "light",
+                "height": "30px",
+                "offsetTop": "18px",
+                "offsetBottom": "0px",
+                "offsetStart": "18px",
+                "paddingAll": "2px"
+              },
+              {
+                "type": "box",
                 "layout": "vertical",
                 "contents": [
                   {
@@ -108,6 +146,50 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
                     "spacing": "sm",
                     "borderColor": "#ffffff",
                     "margin": "xxl",
+                    "height": "40px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "filler"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "filler"
+                          },
+                          {
+                            "type": "text",
+                            "text": "Visit My Assets",
+                            "color": "#ffffff",
+                            "flex": 0,
+                            "offsetTop": "-2px"
+                          },
+                          {
+                            "type": "filler"
+                          }
+                        ],
+                        "spacing": "sm",
+                        "action": {
+                          "type": "uri",
+                          "label": "action",
+                          "uri": "https://liff.line.me/1653830667-Yry3y97j"
+                        }
+                      },
+                      {
+                        "type": "filler"
+                      }
+                    ],
+                    "borderWidth": "1px",
+                    "cornerRadius": "4px",
+                    "spacing": "sm",
+                    "borderColor": "#ffffff",
+                    "backgroundColor": "#9ffd0261",
+                    "margin": "md",
                     "height": "40px"
                   }
                 ],
