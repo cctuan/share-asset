@@ -25,6 +25,6 @@ export const useLine = () => {
 
   return {
     connectLine,
-    liffConnector: liffRef.current
+    liffConnector: liffRef
   }
 }

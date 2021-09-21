@@ -17,6 +17,28 @@ export interface IOpenseaOwner {
     config: string
 }
 
+export interface IAssetCollection {
+    "banner_image_url": string,
+    "created_date": string,
+    "default_to_fiat": boolean,
+    "description": string,
+    "discord_url": string,
+    "external_url": string,
+    "featured": boolean,
+    "featured_image_url": string,
+    "hidden": boolean,
+    "safelist_request_status": string,
+    "image_url": string,
+    "is_subject_to_whitelist": boolean,
+    "large_image_url": string,
+    "name": string,
+    "only_proxied_transfers": boolean,
+    "slug": string,
+    "twitter_username": string,
+    "instagram_username": string | null,
+    "wiki_url": string | null
+  }
+
 export interface IAssetContract {
     address: string;
     asset_contract_type: string;
@@ -49,6 +71,7 @@ export interface IAssetObjectInterface {
     name: string,
     external_link: string,
     asset_contract: IAssetContract,
+    collection: IAssetCollection,
     owner: IOpenseaOwner,
     permalink: string
 }

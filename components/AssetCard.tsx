@@ -14,11 +14,10 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
     liffConnector
   } = useContext(LineContext)
   const handleShare = async () => {
-    if (!liffConnector || !liffConnector.isLoggedIn()) {
+    if (!liffConnector.current || !liffConnector.current.isLoggedIn()) {
       await connectLine()
     }
-    console.log(liffConnector)
-    await liffConnector?.sendMessages([
+    liffConnector.current && await liffConnector.current.shareTargetPicker([
       {
         "type": "flex",
         "altText": "this is a flex message",
@@ -30,7 +29,7 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
             "contents": [
               {
                 "type": "image",
-                "url": props.image_url,
+                "url": props.collection.image_url,
                 "size": "full",
                 "aspectMode": "cover",
                 "aspectRatio": "2:3",
@@ -59,9 +58,8 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
                     "contents": [
                       {
                         "type": "text",
-                        "text": props.asset_contract.description,
+                        "text": props.collection.description,
                         "color": "#ffffffcc",
-                        "decoration": "line-through",
                         "gravity": "bottom",
                         "flex": 0,
                         "size": "sm"
@@ -98,7 +96,7 @@ const AssetCard: FunctionComponent<IAssetObjectInterface> = (props) => {
                         "action": {
                           "type": "uri",
                           "label": "action",
-                          "uri": props.external_link
+                          "uri": props.permalink
                         }
                       },
                       {
